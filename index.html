@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Như 🌸</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:#914c70;
+  background:linear-gradient(135deg,#fff1f6,#fbd8e8,#fff5fa);
+  min-height:100vh;
+  overflow:hidden;
+}
+.page{
+  display:none;
+  min-height:100vh;
+  padding:30px 23px;
+  text-align:center;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  animation:show .7s ease;
+}
+.page.active{display:flex}
+h1{font-size:32px;margin:12px 0}
+p{font-size:17px;line-height:1.8}
+.flower{font-size:65px;animation:float 3s infinite ease-in-out}
+button{
+  border:0;
+  border-radius:30px;
+  padding:13px 23px;
+  margin:9px;
+  background:#e88bb5;
+  color:white;
+  font-size:16px;
+  box-shadow:0 5px 15px #e88bb544;
+  cursor:pointer;
+}
+button:active{transform:scale(.96)}
+.card{
+  width:100%;
+  max-width:360px;
+  padding:25px 20px;
+  border:1px solid #ffffff;
+  border-radius:25px;
+  background:#ffffff9c;
+  box-shadow:0 10px 35px #bd719322;
+  backdrop-filter:blur(8px);
+}
+.small{font-size:14px;color:#b77898}
+.petal{
+  position:fixed;
+  top:-30px;
+  pointer-events:none;
+  animation:fall linear forwards;
+  z-index:5;
+}
+.sparkle{
+  position:fixed;
+  pointer-events:none;
+  color:white;
+  animation:twinkle 2s infinite;
+}
+@keyframes show{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes float{
+  50%{transform:translateY(-12px) rotate(5deg)}
+}
+@keyframes fall{
+  to{transform:translate(var(--drift),110vh) rotate(600deg);opacity:.2}
+}
+@keyframes twinkle{
+  50%{opacity:.25;transform:scale(.6)}
+}
+</style>
+</head>
+<body>
+
+<div class="sparkle" style="top:12%;left:12%">✧</div>
+<div class="sparkle" style="top:25%;right:12%">✦</div>
+<div class="sparkle" style="bottom:20%;left:9%">✧</div>
+<div class="sparkle" style="bottom:12%;right:15%">✦</div>
+
+<section class="page active" id="p1">
+  <div class="flower">🌷</div>
+  <p class="small">A little something for you</p>
+  <h1>For Như 💗</h1>
+  <p>Một món quà nho nhỏ dành cho ngày đặc biệt.</p>
+  <button onclick="go(2)">Mở ra nhé ✨</button>
+</section>
+
+<section class="page" id="p2">
+  <div class="flower">🌸</div>
+  <div class="card">
+    <p class="small">20 • 10 • 2026</p>
+    <h1>Chúc mừng 20/10!</h1>
+    <p>Chúc Như luôn vui vẻ, gặp nhiều may mắn và có thật nhiều điều đáng yêu trong cuộc sống.</p>
+    <p>Mong những ngày bình thường nhất cũng có thể mang đến cho Như một chút niềm vui. 💕</p>
+  </div>
+  <button onclick="go(3)">Tiếp tục →</button>
+</section>
+
+<section class="page" id="p3">
+  <div class="flower">🧸</div>
+  <div class="card">
+    <h1>Một điều nho nhỏ</h1>
+    <p>Hy vọng món quà nhỏ này có thể khiến Như mỉm cười một chút.</p>
+    <p>Không cần điều gì quá lớn lao, chỉ mong Như luôn giữ được những điều mình yêu thích và những nụ cười của riêng mình. 🌷</p>
+  </div>
+  <button onclick="go(4)">Mở bất ngờ 🎁</button>
+</section>
+
+<section class="page" id="p4">
+  <div class="flower">💐</div>
+  <h1>Happy Women's Day!</h1>
+  <p>Chúc Như có một ngày 20/10 thật xinh đẹp và hạnh phúc nhé! 💖</p>
+  <p class="small">Made with care ♡</p>
+  <button onclick="go(1)">Xem lại từ đầu ↻</button>
+</section>
+
+<script>
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>{
+    p.classList.remove('active');
+  });
+  document.getElementById('p'+n).classList.add('active');
+}
+const petals=['🌸','🌷','🌺','💗','✿'];
+function makePetal(){
+  const el=document.createElement('span');
+  el.className='petal';
+  el.textContent=petals[Math.floor(Math.random()*petals.length)];
+  el.style.left=Math.random()*100+'vw';
+  el.style.fontSize=(14+Math.random()*15)+'px';
+  el.style.setProperty('--drift',(Math.random()*160-80)+'px');
+  el.style.animationDuration=(5+Math.random()*5)+'s';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),10000);
+}
+setInterval(makePetal,450);
+</script>
+</body>
+</html>
